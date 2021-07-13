@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fragmentProfileInfo"
+        android:title="Your Profile"
+        android:icon="@drawable/profile"/>
+    <item
+        android:id="@+id/fragmentSettings"
+        android:title="Settings"
+        android:icon="@drawable/settings"/>
+    <item
+        android:id="@+id/fragmentFeedback"
+        android:title="Help &amp; Feedback"
+        android:icon="@drawable/feedback"/>
+    <item
+        android:id="@+id/fragmentAuth"
+        android:title="Sign out"
+        android:icon="@drawable/signout"/>
+
+</menu>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="xiketic">#010114</color>
+    <color name="navyBlue">#03045E</color>
+    <color name="royalDarkBlue">#032174</color>
+    <color name="starCommandBlue">#0077B6</color>
+    <color name="ceruleanBlue">#00B4D8</color>
+    <color name="skyBlue">#90E0EF</color>
+    <color name="azureBlue">#F1FEFF</color>
+
+</resources>

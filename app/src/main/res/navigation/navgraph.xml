@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navgraph"
+    app:startDestination="@id/fragmentAuth">
+    <fragment
+        android:id="@+id/fragmentAuth"
+        android:name="com.fluck.parkitfirst.fragments.FragmentAuth"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth" >
+        <action
+            android:id="@+id/action_fragmentAuth_to_fragmentAccess"
+            app:destination="@id/fragmentAccess" />
+        <action
+            android:id="@+id/action_fragmentAuth_to_fragmentRecover"
+            app:destination="@id/fragmentRecover" />
+        <action
+            android:id="@+id/action_fragmentAuth_to_mapActivity"
+            app:destination="@id/mapActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAccess"
+        android:name="com.fluck.parkitfirst.fragments.FragmentAccess"
+        android:label="fragment_access"
+        tools:layout="@layout/fragment_access" >
+        <action
+            android:id="@+id/action_fragmentAccess_to_fragmentAuth"
+            app:destination="@id/fragmentAuth" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentRecover"
+        android:name="com.fluck.parkitfirst.fragments.FragmentRecover"
+        android:label="fragment_recover"
+        tools:layout="@layout/fragment_recover" >
+        <action
+            android:id="@+id/action_fragmentRecover_to_fragmentAuth"
+            app:destination="@id/fragmentAuth" />
+    </fragment>
+    <activity
+        android:id="@+id/mapActivity"
+        android:name="com.fluck.parkitfirst.MapActivity"
+        android:label="activity_map"
+        tools:layout="@layout/activity_map" />
+</navigation>

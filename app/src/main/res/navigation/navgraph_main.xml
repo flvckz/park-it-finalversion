@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navgraph_main"
+    app:startDestination="@id/fragmentHome2">
+    <fragment
+        android:id="@+id/fragmentHome2"
+        android:name="com.fluck.parkitfirst.fragments.FragmentHome"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/fragmentFavorites"
+        android:name="com.fluck.parkitfirst.fragments.FragmentFavorites"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/fragmentRecents"
+        android:name="com.fluck.parkitfirst.fragments.FragmentRecents"
+        android:label="fragment_recents"
+        tools:layout="@layout/fragment_recents" />
+    <fragment
+        android:id="@+id/fragmentFamily"
+        android:name="com.fluck.parkitfirst.fragments.FragmentFamily"
+        android:label="fragment_family"
+        tools:layout="@layout/fragment_family" />
+    <fragment
+        android:id="@+id/fragmentHelp"
+        android:name="com.fluck.parkitfirst.fragments.FragmentHelp"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
+    <fragment
+        android:id="@+id/fragmentProfileInfo"
+        android:name="com.fluck.parkitfirst.fragments.FragmentProfileInfo"
+        android:label="fragment_profile_info"
+        tools:layout="@layout/fragment_profile_info" />
+    <fragment
+        android:id="@+id/fragmentFeedback"
+        android:name="com.fluck.parkitfirst.fragments.FragmentFeedback"
+        android:label="fragment_feedback"
+        tools:layout="@layout/fragment_feedback" />
+    <fragment
+        android:id="@+id/fragmentSettings"
+        android:name="com.fluck.parkitfirst.fragments.FragmentSettings"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>

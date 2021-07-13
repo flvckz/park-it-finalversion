@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "346885388019",
+    "project_id": "parkitfirst-d26c9",
+    "storage_bucket": "parkitfirst-d26c9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:346885388019:android:b13f2d7745f64aca07e986",
+        "android_client_info": {
+          "package_name": "com.fluck.parkitfirst"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "346885388019-n0h2ndmdb3pacmkm2burkjt21frblcfb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUCAf8ag48PGEWBNA-zYps5-41822CMco"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "346885388019-n0h2ndmdb3pacmkm2burkjt21frblcfb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
