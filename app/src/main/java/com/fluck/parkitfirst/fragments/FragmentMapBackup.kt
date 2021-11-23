@@ -28,21 +28,17 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.lang.Exception
-import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.location.LocationCallback
 
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
+import com.google.android.gms.maps.model.*
 import com.google.android.gms.tasks.CancellationToken
 import com.google.android.gms.tasks.OnTokenCanceledListener
 
@@ -115,7 +111,7 @@ class FragmentMapBackup : Fragment(), OnMapReadyCallback {
                     //if (lastMarker != null)
                     //    lastMarker!!.remove()
 
-                    /*lastMarker = */mMap.addMarker(MarkerOptions().position(geoPosition).title(getDirection(geoPosition)))
+                    /*lastMarker = */mMap.addMarker(MarkerOptions().position(geoPosition).title(getDirection(geoPosition)).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_logo)))
                     mMap.animateCamera(CameraUpdateFactory.newLatLng(geoPosition))
                 }
 
