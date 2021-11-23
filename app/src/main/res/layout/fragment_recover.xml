@@ -22,62 +22,47 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/txtOldPassword"
+        android:id="@+id/edtEmailForgot"
         android:layout_width="340dp"
         android:layout_height="50dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/rectangle_xiketic_box"
         android:ems="10"
-        android:hint="  Old password"
         android:fontFamily="@font/roboto"
-        android:inputType="textPassword"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:paddingHorizontal="10dp"
         android:textColorHint="@color/xiketic"
-        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnRecover"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtRecoverAcc" />
-
-    <EditText
-        android:id="@+id/txtNewPassword"
-        android:layout_width="340dp"
-        android:layout_height="50dp"
-        android:background="@drawable/rectangle_xiketic_box"
-        android:ems="10"
-        android:hint="  New password"
-        android:fontFamily="@font/roboto"
-        android:inputType="textPassword"
-        android:textColorHint="@color/xiketic"
-        android:layout_marginTop="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtOldPassword" />
-
-    <EditText
-        android:id="@+id/txtPasswordConfirm"
-        android:layout_width="340dp"
-        android:layout_height="50dp"
-        android:background="@drawable/rectangle_xiketic_box"
-        android:ems="10"
-        android:hint="  Confirm new password"
-        android:fontFamily="@font/roboto"
-        android:inputType="textPassword"
-        android:textColorHint="@color/xiketic"
-        android:layout_marginTop="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNewPassword" />
 
     <Button
         android:id="@+id/btnRecover"
         android:layout_width="340dp"
         android:layout_height="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="240dp"
         android:background="@drawable/rectangle_gradient_box"
         android:fontFamily="@font/roboto_black"
         android:text="RECOVER ACCOUNT"
         android:textAllCaps="true"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPasswordConfirm" />
+        app:layout_constraintTop_toBottomOf="@+id/edtEmailForgot" />
+
+    <TextView
+        android:id="@+id/txtGoToLogInForgot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:textColor="@color/xiketic"
+        android:text="Don't need support? Log in"
+        android:fontFamily="@font/roboto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRecover" />
 
     <TextView
         android:id="@+id/txtSupport"

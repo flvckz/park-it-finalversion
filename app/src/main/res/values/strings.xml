@@ -6,4 +6,8 @@
     <string name="drawer_close">Close</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="fragment_locate">Fragment Mapa</string>
+    <string name="fragment_void"></string>
+    <string name="missing_permission_message">Faltan permisos</string>
+    <string name="missing_permissions_button">Faltan permisos del boton</string>
 </resources>

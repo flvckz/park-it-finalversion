@@ -1,81 +1,75 @@
 package com.fluck.parkitfirst
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.content.pm.PackageManager
+import android.graphics.Color
+import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Looper
+import android.provider.Settings
 import android.util.Log
 import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import androidx.appcompat.app.ActionBarDrawerToggle
+import android.view.Window
+import android.view.WindowManager
+import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
-import com.fluck.parkitfirst.databinding.ActivityMainBinding
-import com.fluck.parkitfirst.databinding.ActivityMapBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationView
+import com.fluck.parkitfirst.R.*
+import com.fluck.parkitfirst.entities.MapViewModel
+import com.google.android.gms.location.*
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.activity_map.*
+import android.graphics.drawable.ColorDrawable
+import androidx.appcompat.app.ActionBar
 
-class MapActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
+
+class MapActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
-    private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityMapBinding
 
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMapBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(layout.activity_map)
 
-        setupNavigation()
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
+        navController = Navigation.findNavController(this, id.nav_host_fragment)
+
+        nav_view.setupWithNavController(navController)
+        NavigationUI.setupActionBarWithNavController(this, navController, drawer_layout)
+
+        val colorDrawable = ColorDrawable(R.color.starCommandBlue)
+        actionBar?.setBackgroundDrawable(colorDrawable)
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
+        return NavigationUI.navigateUp(navController, drawer_layout)
+        // enabling action bar app icon and behaving it as a toggle button
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        actionBar?.setHomeButtonEnabled(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.drawer_menu, menu)
+        return true
     }
 
     override fun onBackPressed() {
-        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            drawer_layout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        item.isChecked = true
-
-        binding.drawerLayout.closeDrawers()
-
-        try {
-            when(item.itemId) {
-                else -> { navController.navigate(item.itemId) }
-            }
-        } catch (e: Exception) {
-            Log.w("MainActivity", "Navigation Drawer exception $e")
-        }
-
-        return true
-    }
-
-    private fun setupNavigation() {
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-
-        navController = Navigation.findNavController(this, R.id.nav_host)
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
-        NavigationUI.setupWithNavController(binding.navigationView, navController)
-        binding.navigationView.setNavigationItemSelectedListener(this)
-
-        NavigationUI.setupWithNavController(binding.bottomNavView, navController)
-    }
 
 }

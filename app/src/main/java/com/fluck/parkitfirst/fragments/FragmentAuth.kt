@@ -18,8 +18,8 @@ class FragmentAuth : Fragment() {
     lateinit var v : View
 
     lateinit var txtLogIn : TextView
-    lateinit var txtEmail : EditText
-    lateinit var txtPassword : EditText
+    lateinit var edtEmail : EditText
+    lateinit var edtPassword : EditText
     lateinit var btnSignIn : Button
     lateinit var txtGoToSignUp: TextView
     lateinit var txtRecover: TextView
@@ -30,9 +30,9 @@ class FragmentAuth : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_auth, container, false)
-        txtLogIn = v.findViewById(R.id.txtLogIn)
-        txtEmail = v.findViewById(R.id.txtEmail)
-        txtPassword = v.findViewById(R.id.txtPassword)
+        txtLogIn = v.findViewById(R.id.edtLogIn)
+        edtEmail = v.findViewById(R.id.edtEmail)
+        edtPassword = v.findViewById(R.id.edtPassword)
         btnSignIn = v.findViewById(R.id.btnSignIn)
         txtGoToSignUp = v.findViewById(R.id.txtGoToSignUp)
         txtRecover = v.findViewById(R.id.txtRecover)
@@ -49,12 +49,12 @@ class FragmentAuth : Fragment() {
 
     private fun signIn() {
         btnSignIn.setOnClickListener {
-            if (txtEmail.text.toString() != "" && txtPassword.text.toString() != ""){
+            if (edtEmail.text.toString() != "" && edtPassword.text.toString() != ""){
                 FirebaseAuth.getInstance()
-                    .signInWithEmailAndPassword(txtEmail.text.toString(),
-                        txtPassword.text.toString()).addOnCompleteListener{
+                    .signInWithEmailAndPassword(edtEmail.text.toString(),
+                        edtPassword.text.toString()).addOnCompleteListener{
                         if(it.isSuccessful){
-                            val action = FragmentAuthDirections.actionFragmentAuthToMapActivity()
+                            val action = FragmentAuthDirections.actionFragmentAuthToDrawerActivity()
                             v.findNavController().navigate(action)
                         }
                         else{

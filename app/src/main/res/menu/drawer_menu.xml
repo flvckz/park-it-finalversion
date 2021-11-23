@@ -1,21 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
 
-    <item
-        android:id="@+id/fragmentProfileInfo"
-        android:title="Your Profile"
-        android:icon="@drawable/profile"/>
-    <item
-        android:id="@+id/fragmentSettings"
-        android:title="Settings"
-        android:icon="@drawable/settings"/>
-    <item
-        android:id="@+id/fragmentFeedback"
-        android:title="Help &amp; Feedback"
-        android:icon="@drawable/feedback"/>
-    <item
-        android:id="@+id/fragmentAuth"
-        android:title="Sign out"
-        android:icon="@drawable/signout"/>
+    <item android:title="Usuario">
+        <menu>
+            <item
+                android:id="@+id/fragmentProfileInfo"
+                android:title="Your Profile"
+                android:icon="@drawable/profile" />
+
+            <item
+                android:id="@+id/fragmentSettings"
+                android:title="Settings"
+                android:icon="@drawable/settings"/>
+        </menu>
+
+    </item>
+
+    <item android:title="Menú">
+        <menu>
+            <item
+                android:id="@+id/fragmentFavorites"
+                android:icon="@drawable/favorite"
+                android:title="Favorites" />
+
+            <item
+                android:id="@+id/fragmentRecents"
+                android:icon="@drawable/recents"
+                android:title="Recents"
+                />
+
+            <item
+                android:id="@+id/fragmentHelp"
+                android:icon="@drawable/help"
+                android:title="Help"
+                />
+
+            <item
+                android:id="@+id/fragmentFamily"
+                android:icon="@drawable/family"
+                android:title="Family" />
+        </menu>
+
+    </item>
+
+    <item android:title="Sesión">
+        <menu>
+            <item
+                android:id="@+id/fragmentFeedback"
+                android:title="Help &amp; Feedback"
+                android:icon="@drawable/feedback"/>
+
+            <item
+                android:id="@+id/fragmentLogout"
+                android:title="Sign out"
+                android:icon="@drawable/signout"/>
+
+        </menu>
+    </item>
 
 </menu>

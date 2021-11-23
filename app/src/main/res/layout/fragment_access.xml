@@ -23,14 +23,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/txtEmail"
+        android:id="@+id/edtEmail"
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:layout_marginTop="75dp"
         android:background="@drawable/rectangle_xiketic_box"
         android:ems="10"
         android:fontFamily="@font/roboto"
-        android:hint="  Email"
+        android:hint="Email"
+        android:paddingHorizontal="10dp"
         android:inputType="textEmailAddress"
         android:textColorHint="@color/xiketic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,19 +39,20 @@
         app:layout_constraintTop_toBottomOf="@+id/txtSignUp" />
 
     <EditText
-        android:id="@+id/txtPassword"
+        android:id="@+id/edtPassword"
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_xiketic_box"
         android:ems="10"
-        android:hint="  Password"
+        android:hint="Password"
+        android:paddingHorizontal="10dp"
         android:fontFamily="@font/roboto"
         android:inputType="textPassword"
         android:textColorHint="@color/xiketic"
         android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
     <Button
         android:id="@+id/btnSignUp"
@@ -61,9 +63,10 @@
         android:fontFamily="@font/roboto_black"
         android:text="SIGN UP"
         android:textAllCaps="true"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/spnVehicles" />
 
     <TextView
         android:id="@+id/txtGoToLogIn"
@@ -76,4 +79,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSignUp" />
+
+    <Spinner
+        android:id="@+id/spnVehicles"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/rectangle_xiketic_box"
+        android:autofillHints="Vehicle type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtPassword"
+        tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

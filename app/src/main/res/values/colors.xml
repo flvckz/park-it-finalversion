@@ -7,5 +7,6 @@
     <color name="ceruleanBlue">#00B4D8</color>
     <color name="skyBlue">#90E0EF</color>
     <color name="azureBlue">#F1FEFF</color>
+    <color name="white">#FFFFFF</color>
 
 </resources>

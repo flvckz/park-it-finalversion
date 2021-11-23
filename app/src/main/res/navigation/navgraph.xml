@@ -16,8 +16,8 @@
             android:id="@+id/action_fragmentAuth_to_fragmentRecover"
             app:destination="@id/fragmentRecover" />
         <action
-            android:id="@+id/action_fragmentAuth_to_mapActivity"
-            app:destination="@id/mapActivity" />
+            android:id="@+id/action_fragmentAuth_to_drawerActivity"
+            app:destination="@id/drawerActivity" />
     </fragment>
     <fragment
         android:id="@+id/fragmentAccess"
@@ -38,8 +38,8 @@
             app:destination="@id/fragmentAuth" />
     </fragment>
     <activity
-        android:id="@+id/mapActivity"
+        android:id="@+id/drawerActivity"
         android:name="com.fluck.parkitfirst.MapActivity"
-        android:label="activity_map"
+        android:label="activity_drawer"
         tools:layout="@layout/activity_map" />
 </navigation>

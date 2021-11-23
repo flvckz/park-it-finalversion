@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navgraph_main"
-    app:startDestination="@id/fragmentHome2">
+    app:startDestination="@id/fragmentMapBackup">
     <fragment
         android:id="@+id/fragmentHome2"
         android:name="com.fluck.parkitfirst.fragments.FragmentHome"
@@ -44,4 +44,36 @@
         android:name="com.fluck.parkitfirst.fragments.FragmentSettings"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/fragmentLogout"
+        android:name="com.fluck.parkitfirst.fragments.FragmentLogout"
+        android:label="fragment_logout"
+        tools:layout="@layout/fragment_logout" >
+        <action
+            android:id="@+id/action_fragmentLogout_to_authActivity"
+            app:destination="@id/authActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/authActivity"
+        android:name="com.fluck.parkitfirst.AuthActivity"
+        android:label="activity_auth"
+        tools:layout="@layout/activity_auth" />
+    <fragment
+        android:id="@+id/fragmentMapBackup"
+        android:name="com.fluck.parkitfirst.fragments.FragmentMapBackup"
+        android:label="fragment_map_backup"
+        tools:layout="@layout/fragment_map_backup" >
+        <action
+            android:id="@+id/action_fragmentMapBackup_to_fragmentWait"
+            app:destination="@id/fragmentWait" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentWait"
+        android:name="com.fluck.parkitfirst.fragments.FragmentWait"
+        android:label="fragment_wait"
+        tools:layout="@layout/fragment_wait" >
+        <action
+            android:id="@+id/action_fragmentWait_to_fragmentMapBackup"
+            app:destination="@id/fragmentMapBackup" />
+    </fragment>
 </navigation>
