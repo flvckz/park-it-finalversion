@@ -1,0 +1,24 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=43:0F:39:C2:F5:1A:AB:FF:D0:A6:58:55:54:8E:BB:8E:5E:43:5B:9B%3Bcom.fluck.parkitfirst.fragments
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    com.fluck.parkitfirst.fragments
+
+    SHA-1 certificate fingerprint:
+    43:0F:39:C2:F5:1A:AB:FF:D0:A6:58:55:54:8E:BB:8E:5E:43:5B:9B
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyD5skBT1VKeZ1__isl4gTWNciwLfXnF8MI</string>
+</resources>
