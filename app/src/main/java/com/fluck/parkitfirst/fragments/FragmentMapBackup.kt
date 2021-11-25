@@ -7,6 +7,7 @@ import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
 import android.os.Handler
+import android.system.Os.remove
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -45,6 +46,8 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.tasks.CancellationToken
 import com.google.android.gms.tasks.OnTokenCanceledListener
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener
+import io.grpc.InternalChannelz.id
 
 
 class FragmentMapBackup : Fragment(), OnMapReadyCallback {
@@ -57,11 +60,12 @@ class FragmentMapBackup : Fragment(), OnMapReadyCallback {
     private lateinit var delLocationBtn: Button
     lateinit var storageReference: StorageReference
     val loc: MutableList<LocationInfo> = arrayListOf()
+    val markerId: MutableMap<String, LocationInfo> = HashMap()
     private val map: MutableMap<String, Any> = HashMap()
     private lateinit var lastLocation: Location
     private var userId = FirebaseAuth.getInstance().currentUser?.uid
     private var lastMarker: Marker? = null
-    private val SPLASH_TIME_OUT : Long = 1000
+    private val SPLASH_TIME_OUT : Long = 20
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
 
@@ -121,7 +125,7 @@ class FragmentMapBackup : Fragment(), OnMapReadyCallback {
 
             }
         setUpMap()
-        //new app 22nov
+        //FINAL APP 24 NOV
     }
 
     private fun getDirection(latLng: LatLng) : String {
@@ -166,8 +170,8 @@ class FragmentMapBackup : Fragment(), OnMapReadyCallback {
     }
 
     private fun uploadData(data: Map<String, Any>) {
-        userId?.let {
-            db!!.collection("Markers").document(it)
+        //userId?.let {
+            db!!.collection("Markers").document()
                 .set(data)
                 .addOnSuccessListener {
                     Toast.makeText(context, "Ubication added to map", Toast.LENGTH_SHORT).show()
@@ -178,7 +182,7 @@ class FragmentMapBackup : Fragment(), OnMapReadyCallback {
                     shareLocationBtn?.isEnabled = true
 
                 }
-        }
+        //}
     }
 
     @SuppressLint("MissingPermission")
@@ -198,6 +202,8 @@ class FragmentMapBackup : Fragment(), OnMapReadyCallback {
         }
     }
 
+
+
     private fun setUpMap() {
         if (ActivityCompat.checkSelfPermission(requireContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -208,6 +214,23 @@ class FragmentMapBackup : Fragment(), OnMapReadyCallback {
         mMap.isMyLocationEnabled = true
         mMap.uiSettings.isZoomControlsEnabled = true
         mMap.uiSettings.isCompassEnabled = true
+
+        mMap.setOnInfoWindowClickListener { marker: Marker -> // Remove the marker
+
+                    db.collection("Markers")
+                        .whereEqualTo("latitude", marker.position.latitude)
+                        .whereEqualTo("longitude", marker.position.longitude)
+                        .get()
+                        .addOnSuccessListener { documents ->
+                            for (document in documents) {
+                                db.collection("Markers").document(document.id)
+                                    .delete()
+                                marker.remove()
+                                lastMarker?.remove()
+                                mMap.clear()
+                            }
+                        }
+                }
 
         shareLocationBtn.setOnClickListener{
             getLastLocation()

@@ -34,11 +34,12 @@
 
     <Button
         android:id="@+id/btn_del_marker"
-        android:layout_width="47dp"
+        android:layout_width="46dp"
         android:layout_height="47dp"
         android:backgroundTint="@color/white"
         android:layout_marginBottom="87dp"
         android:layout_marginRight="7.5dp"
+        android:drawableStart="@drawable/ic_baseline_autorenew_24"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintEnd_toEndOf="parent" />
 
