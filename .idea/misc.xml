@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Documentos/AaOrt/5to/Proyecto_Final/final/ParkItFirst-22nov/ParkItFirst-22nov/ParkItFirst-22nov/app/src/main/res/layout/activity_auth.xml" value="0.36666666666666664" />
+        <entry key="..\:/Documentos/AaOrt/5to/Proyecto_Final/final/ParkItFirst-22nov/ParkItFirst-22nov/ParkItFirst-22nov/app/src/main/res/layout/activity_map.xml" value="0.22" />
         <entry key="..\:/Documentos/AaOrt/5to/Proyecto_Final/final/ParkItFirst-22nov/ParkItFirst-22nov/ParkItFirst-22nov/app/src/main/res/layout/custom_dialog.xml" value="0.36666666666666664" />
         <entry key="..\:/Documentos/AaOrt/5to/Proyecto_Final/final/ParkItFirst-22nov/ParkItFirst-22nov/ParkItFirst-22nov/app/src/main/res/layout/fragment_access.xml" value="0.36666666666666664" />
         <entry key="..\:/Documentos/AaOrt/5to/Proyecto_Final/final/ParkItFirst-22nov/ParkItFirst-22nov/ParkItFirst-22nov/app/src/main/res/layout/fragment_auth.xml" value="0.36666666666666664" />
@@ -11,6 +12,8 @@
         <entry key="..\:/Documentos/AaOrt/5to/Proyecto_Final/final/ParkItFirst-22nov/ParkItFirst-22nov/ParkItFirst-22nov/app/src/main/res/layout/fragment_logout.xml" value="0.36666666666666664" />
         <entry key="..\:/Documentos/AaOrt/5to/Proyecto_Final/final/ParkItFirst-22nov/ParkItFirst-22nov/ParkItFirst-22nov/app/src/main/res/layout/fragment_map_backup.xml" value="0.36666666666666664" />
         <entry key="..\:/Documentos/AaOrt/5to/Proyecto_Final/final/ParkItFirst-22nov/ParkItFirst-22nov/ParkItFirst-22nov/app/src/main/res/layout/fragment_wait.xml" value="0.36666666666666664" />
+        <entry key="..\:/Documentos/AaOrt/5to/Proyecto_Final/final/ParkItFirst-22nov/ParkItFirst-22nov/ParkItFirst-22nov/app/src/main/res/layout/nav_header.xml" value="0.36666666666666664" />
+        <entry key="..\:/Documentos/AaOrt/5to/Proyecto_Final/final/ParkItFirst-22nov/ParkItFirst-22nov/ParkItFirst-22nov/app/src/main/res/menu/drawer_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

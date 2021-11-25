@@ -43,27 +43,25 @@ import com.google.android.gms.maps.model.*
 import com.google.android.gms.tasks.CancellationToken
 import com.google.android.gms.tasks.OnTokenCanceledListener
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.QuerySnapshot
 import io.grpc.InternalChannelz.id
-
 
 class FragmentMapBackup : Fragment(), OnMapReadyCallback {
 
     lateinit var v: View
-    private lateinit var mMap: GoogleMap
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private val db = FirebaseFirestore.getInstance()
-    private lateinit var shareLocationBtn: Button
-    private lateinit var delLocationBtn: Button
-    lateinit var storageReference: StorageReference
-    val loc: MutableList<LocationInfo> = arrayListOf()
-    val markerId: MutableMap<String, LocationInfo> = HashMap()
-    private val map: MutableMap<String, Any> = HashMap()
-    private lateinit var lastLocation: Location
-    private var userId = FirebaseAuth.getInstance().currentUser?.uid
-    private var lastMarker: Marker? = null
-    private val SPLASH_TIME_OUT : Long = 20
-    private lateinit var locationRequest: LocationRequest
-    private lateinit var locationCallback: LocationCallback
+    private lateinit var mMap: GoogleMap //mapa de google
+    private lateinit var fusedLocationClient: FusedLocationProviderClient //ubicacion
+    private val db = FirebaseFirestore.getInstance() //firebase
+    private lateinit var shareLocationBtn: Button //boton de VACATE
+    private lateinit var delLocationBtn: Button //boton de REFRESH
+    lateinit var storageReference: StorageReference //guardado de firestore (linea 69)
+    private val loc: MutableList<LocationInfo> = arrayListOf() //LISTA DE LA CLASS PARA LA LAT LONG
+    private val map: MutableMap<String, Any> = HashMap() //lista para el mapa
+    private lateinit var lastLocation: Location //last location
+    private var userId = FirebaseAuth.getInstance().currentUser?.uid //user id
+    private var lastMarker: Marker? = null //marker
+    private val SPLASH_TIME_OUT : Long = 20 //tiempo para el refresh
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_map_backup, container, false)
@@ -89,55 +87,53 @@ class FragmentMapBackup : Fragment(), OnMapReadyCallback {
         val mapFragment = childFragmentManager.findFragmentById(R.id.mapBU) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
         // Construct a FusedLocationProviderClient.
-        db.collection("Markers").document().delete()
-
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap //initialise map
-        mMap.clear()
+        mMap = googleMap //declara al mapa como mMap
+        mMap.clear() //borra todos los markers (en pantalla, no database)
         //mMap.uiSettings.isZoomControlsEnabled = true
 
         db.collection("Markers")
-            .addSnapshotListener{ result, e ->
+            .addSnapshotListener{ result: QuerySnapshot?, e: FirebaseFirestoreException? ->
                 if (e != null){
                     Log.w(TAG, "Listen failed. ", e)
                     return@addSnapshotListener
                 }
-                loc.clear()
-                loc.addAll(result!!.toObjects(LocationInfo::class.java))
+                loc.clear() //limpia la mutable list de locationinfo
+                loc.addAll(result!!.toObjects(LocationInfo::class.java)) //añade el resultado de la snapshot (si escucho un cambio) al objeto
                 for (LocationInfo in loc){
 
                     //mMap.clear()
 
-                    val geoPosition = LatLng(LocationInfo.latitude, LocationInfo.longitude)
+                    val geoPosition = LatLng(LocationInfo.latitude, LocationInfo.longitude) //CREADO X NOSOTROS, CONSTANTE QUE GUARDA LAT LONG
 
                     //if (lastMarker != null)
                     //    lastMarker!!.remove()
 
                     /*lastMarker = */mMap.addMarker(MarkerOptions().position(geoPosition).title(getDirection(geoPosition)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)))
-                    mMap.animateCamera(CameraUpdateFactory.newLatLng(geoPosition))
+                    mMap.animateCamera(CameraUpdateFactory.newLatLng(geoPosition)) //geoPosition nuestra posicion
                 }
 
             }
-        setUpMap()
+        setUpMap() //funcion de mas abajo (setea las cosas, listeners del boton, etc) LINEA 199 FUNCION COMPLETA
         //FINAL APP 24 NOV
     }
 
-    private fun getDirection(latLng: LatLng) : String {
-        val geocoder = Geocoder(context)
-        val directions: List<Address>?
-        val firstDirection: Address
-        var addressTxt = ""
+    private fun getDirection(latLng: LatLng) : String { //obtiene calle y numero (address y adressline)
+        val geocoder = Geocoder(context) //geocoder prehecha para coordenadas
+        val directions: List<Address>? //guarda la lista de direcciones
+        val firstDirection: Address //constante para la primera direccion de tipo address (direccion)
+        var addressTxt = "" //variable donde se muestra
 
         try {
             directions = geocoder.getFromLocation(
                 latLng.latitude, latLng.longitude, 1
             )
             if (directions != null && directions.isNotEmpty()) {
-                firstDirection = directions[0]
+                firstDirection = directions[0] //guarda la direccion unica
 
-                //Multiline direction
+                //direccion con muchas lineas
                 if (firstDirection.maxAddressLineIndex > 0) {
                     for (i in 0..firstDirection.maxAddressLineIndex) {
                         addressTxt += firstDirection.getAddressLine(i) + "\n"
@@ -166,9 +162,8 @@ class FragmentMapBackup : Fragment(), OnMapReadyCallback {
     }
 
     private fun uploadData(data: Map<String, Any>) {
-        //userId?.let {
-            db!!.collection("Markers").document()
-                .set(data)
+        //userId?.let { //por si se necesita hacer el marker con user id propio (que se sobreescriban) // siempre se sobreescriben xq el id es siemper la uId del user
+            db.collection("Markers").document().set(data) //document vacio crea uno nuevo
                 .addOnSuccessListener {
                     Toast.makeText(context, "Ubication added to map", Toast.LENGTH_SHORT).show()
                     shareLocationBtn?.isEnabled = true
@@ -181,13 +176,13 @@ class FragmentMapBackup : Fragment(), OnMapReadyCallback {
         //}
     }
 
-    @SuppressLint("MissingPermission")
-    private fun getLastLocation() {
+    @SuppressLint("MissingPermission") //no checkea permisos
+    private fun getLastLocation() { //obtener nuestra ultima ubi para poner el marker siempre donde estemos
         val location = fusedLocationClient.lastLocation
-        location.addOnSuccessListener { location ->
+        location.addOnSuccessListener { location: Location? ->
             if(location != null) {
                 lastLocation = location
-                val currentLatLng = LatLng(location.latitude, location.longitude)
+                val currentLatLng = LatLng(location.latitude, location.longitude) //pasa ubi a coordenadas
 
                 map["latitude"] = location.latitude
                 map["longitude"] = location.longitude
@@ -200,40 +195,39 @@ class FragmentMapBackup : Fragment(), OnMapReadyCallback {
 
 
 
-    private fun setUpMap() {
+    private fun setUpMap() { //200 a 204 checkea permisos
         if (ActivityCompat.checkSelfPermission(requireContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(requireActivity(),
                 arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_LOCATION)
             return
         }
-        mMap.isMyLocationEnabled = true
-        mMap.uiSettings.isZoomControlsEnabled = true
-        mMap.uiSettings.isCompassEnabled = true
+        mMap.isMyLocationEnabled = true //ubi puesta
+        mMap.uiSettings.isZoomControlsEnabled = true //zoom puestp
+        mMap.uiSettings.isCompassEnabled = true //brujula puesta
 
-        mMap.setOnInfoWindowClickListener { marker: Marker -> // Remove the marker
+        mMap.setOnInfoWindowClickListener { marker: Marker -> // WINDOW CLICK LISTENER -> VENTANA QUE SALE CUANDO APRETAS MARKER (EN NUESTRO CASO LA DE LA ADDRESS "Cachimayo 471")
 
                     db.collection("Markers")
-                        .whereEqualTo("latitude", marker.position.latitude)
+                        .whereEqualTo("latitude", marker.position.latitude) //whereEqualTo busca en FB // marker.position busca en el marker localmente
                         .whereEqualTo("longitude", marker.position.longitude)
                         .get()
-                        .addOnSuccessListener { documents ->
+                        .addOnSuccessListener { documents -> //refiere a la firebase
                             for (document in documents) {
                                 db.collection("Markers").document(document.id)
                                     .delete()
-                                marker.remove()
-                                lastMarker?.remove()
-                                mMap.clear()
+                                marker.remove() //borrar marker de pantalla
+                                lastMarker?.remove() //""
+                                mMap.clear() //""
                             }
                         }
                 }
 
-        shareLocationBtn.setOnClickListener{
-            getLastLocation()
+        shareLocationBtn.setOnClickListener{ //boton vacate
+            getLastLocation() //metodo linea 180
         }
 
         delLocationBtn.setOnClickListener {
-            db.collection("Markers").document(userId!!).delete()
             lastMarker?.remove()
 
             Handler().postDelayed(

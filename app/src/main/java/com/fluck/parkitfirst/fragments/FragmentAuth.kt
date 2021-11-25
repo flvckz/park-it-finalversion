@@ -41,7 +41,6 @@ class FragmentAuth : Fragment() {
 
     override fun onStart() {
         super.onStart()
-
         signIn()
         goToSignUp()
         goToRecover()
