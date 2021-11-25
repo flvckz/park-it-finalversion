@@ -2,20 +2,72 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout9"
+    android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.FragmentFeedback">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Feedback"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <EditText
+        android:id="@+id/edtMailto"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rectangle_xiketic_box"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:hint="Mail to:"
+        android:inputType="textEmailAddress"
+        android:paddingHorizontal="10dp"
+        android:textColorHint="@color/xiketic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/edtSubject"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rectangle_xiketic_box"
+        android:ems="10"
+        android:hint="Subject:"
+        android:paddingHorizontal="10dp"
+        android:fontFamily="@font/roboto"
+        android:inputType="text"
+        android:textColorHint="@color/xiketic"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtMailto" />
+
+    <Button
+        android:id="@+id/btnSendMail"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/rectangle_gradient_box"
+        android:fontFamily="@font/roboto_black"
+        android:text="Send"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtSendMessage" />
+
+    <EditText
+        android:id="@+id/edtSendMessage"
+        android:layout_width="340dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="60dp"
+        android:paddingHorizontal="10dp"
+        android:paddingBottom="135dp"
+        android:hint="Message:"
+        android:textColorHint="@color/xiketic"
+        android:background="@drawable/rectangle_xiketic_box"
+        android:autofillHints="Vehicle type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtSubject"
+        tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

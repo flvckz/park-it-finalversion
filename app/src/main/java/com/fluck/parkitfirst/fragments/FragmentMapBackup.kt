@@ -115,7 +115,7 @@ class FragmentMapBackup : Fragment(), OnMapReadyCallback {
                     //if (lastMarker != null)
                     //    lastMarker!!.remove()
 
-                    /*lastMarker = */mMap.addMarker(MarkerOptions().position(geoPosition).title(getDirection(geoPosition)).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_logo)))
+                    /*lastMarker = */mMap.addMarker(MarkerOptions().position(geoPosition).title(getDirection(geoPosition)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)))
                     mMap.animateCamera(CameraUpdateFactory.newLatLng(geoPosition))
                 }
 
