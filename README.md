@@ -18,9 +18,9 @@ Park-It is a modern web application designed to simplify urban parking by connec
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React, TailwindCSS, Vite  
-- **Backend:** Node.js, Express.js, MongoDB  
-- **Authentication:** JWT  
+- **Frontend:** Kotlin  
+- **Backend:** Kotlin, Firestore
+- **Authentication:** Google Auth / Firestore
 - **Design:** Figma (see below)
 
 ## 🎨 Figma Design
