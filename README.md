@@ -1,6 +1,6 @@
 # 🚗 Park-It
 
-Park-It is a modern web application designed to simplify urban parking by connecting drivers with available parking spots in real-time. Built as a final project by Group 3, Park-It aims to reduce the stress of city driving through intuitive design, smart search, and seamless booking.
+Park-It is a modern web application designed to simplify urban parking by connecting drivers with available parking spots in real-time. Park-It aims to reduce the stress of city driving through intuitive design, smart search, and seamless booking.
 
 ## 💡 Features
 
